@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -52,22 +53,32 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+        // PRD specific colors
+        appSidebar: '#F5F5F5', // PRD designSystem.colorPalette.sidebar
+        // PRD Accent Colors for charts/highlights
+        accentBlue: '#299CDB', // Mapped to primary/accent HSL vars
+        accentYellow: '#FFB934',
+        accentGreen: '#1BC167',
+        accentRed: '#E74C3C', // Mapped to destructive HSL var
+        accentOrange: '#FF8E42',
+        // PRD Text Colors (foreground and muted-foreground HSL vars cover these)
+        // primaryText: '#212529',
+        // secondaryText: '#878A99',
+        // PRD Background Colors (background and card HSL vars cover these)
+        // appBackground: '#F3F3F9',
+        // surface: '#FFFFFF',
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        // Kept original Shadcn structure. With --radius: 0.5rem,
+        // 'rounded-md' (calc(var(--radius) - 2px)) will visually be 0.375rem,
+        // matching PRD's default 'rounded-md' specification.
+				lg: 'var(--radius)', // Becomes 0.5rem
+				md: 'calc(var(--radius) - 2px)', // Becomes 0.5rem - 2px (approx. 0.375rem or Tailwind's md)
+				sm: 'calc(var(--radius) - 4px)' // Becomes 0.5rem - 4px (approx. 0.25rem or Tailwind's sm)
 			},
+      fontFamily: {
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
